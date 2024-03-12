@@ -1,14 +1,10 @@
 import os
 import sys
-
 from logging.config import fileConfig
 
+from alembic import context
 from sqlalchemy import engine_from_config
 from sqlalchemy import pool
-
-
-from alembic import context
-
 
 
 parent_dir = os.path.abspath(os.path.join(os.getcwd(), ".."))
@@ -16,7 +12,7 @@ base_dir = os.path.abspath(os.path.join(os.getcwd(), "../../.."))
 sys.path.append(parent_dir)
 sys.path.append(base_dir)
 
-from base import BaseModel, postgres_uri
+from base import BaseModel, postgres_uri  # noqa: E402
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
@@ -27,7 +23,7 @@ config = context.config
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 
-config.set_main_option('sqlalchemy.url', postgres_uri)
+config.set_main_option("sqlalchemy.url", postgres_uri)
 
 # add your model's MetaData object here
 # for 'autogenerate' support
@@ -80,9 +76,7 @@ def run_migrations_online() -> None:
     )
 
     with connectable.connect() as connection:
-        context.configure(
-            connection=connection, target_metadata=target_metadata
-        )
+        context.configure(connection=connection, target_metadata=target_metadata)
 
         with context.begin_transaction():
             context.run_migrations()

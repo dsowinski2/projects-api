@@ -1,15 +1,18 @@
 from datetime import datetime
 from typing import TypeVar
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel
+from pydantic import ConfigDict
 
 
 ModelType = TypeVar("ModelType")
 UpdateType = TypeVar("UpdateType", bound=BaseModel)
 CreateType = TypeVar("CreateType", bound=BaseModel)
 
+
 class ProjectIdType(BaseModel):
     id: int
+
 
 class ProjectCreateType(BaseModel):
     name: str
@@ -20,8 +23,10 @@ class ProjectCreateType(BaseModel):
 
     model_config = ConfigDict(from_attributes=True)
 
+
 class ProjectType(ProjectCreateType, ProjectIdType):
     pass
+
 
 class ProjectUpdateType(BaseModel):
     name: str | None = None

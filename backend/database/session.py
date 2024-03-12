@@ -1,6 +1,3 @@
-
-from typing import Generator
-
 from sqlalchemy import orm
 
 from .connection import db

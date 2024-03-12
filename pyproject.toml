@@ -2,17 +2,14 @@
 name = "projects-api"
 version = "0.1.0"
 description = "Default template for PDM package"
-authors = [
-    {name = "Damian Sowiński", email = "dsowinski2@gmail.com"},
-]
+authors = [{name = "Damian Sowiński", email = "dsowinski2@gmail.com"}]
 dependencies = [
     "fastapi>=0.110.0",
     "SQLAlchemy>=2.0.28",
     "uvicorn>=0.28.0",
     "alembic>=1.13.1",
     "psycopg2>=2.9.9",
-    "environs>=11.0.0",
-]
+    "environs>=11.0.0"]
 requires-python = "==3.12.*"
 readme = "README.md"
 license = {text = "MIT"}
@@ -20,3 +17,9 @@ license = {text = "MIT"}
 
 [tool.pdm]
 distribution = false
+
+[tool.black]
+line-lenght = 120
+
+[tool.flake8]
+line-length = 120
