@@ -5,4 +5,4 @@ projects_router = APIRouter()
 
 @projects_router.get("/")
 def get_projects():
-    return "Hello World!"
+    return "Hello World"

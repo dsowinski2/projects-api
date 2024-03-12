@@ -14,11 +14,13 @@ services:
       - pgdata:/var/lib/postgresql/data
   
   backend:
-    build: 
+    env_file:
+      - ./.env
+    build:
       dockerfile: ./backend/Dockerfile
 
     volumes:
-      - ./backend:/app
+      - ./backend:/backend
     command: /bin/sh -c 'uvicorn main:app --reload --port=5001 --host=0.0.0.0'
     ports:
       - "5001:5001"

@@ -16,4 +16,4 @@ ENV PYTHONPATH=/pkgs
 COPY --from=builder /__pypackages__/3.12/lib /pkgs
 COPY --from=builder /__pypackages__/3.12/bin/* /bin/
 COPY --from=builder /pyproject.toml /pdm.lock /README.md /main.py /
-COPY --from=builder /backend/ /project/backend
+COPY --from=builder /backend/ /backend
