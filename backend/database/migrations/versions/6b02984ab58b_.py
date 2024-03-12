@@ -21,7 +21,12 @@ depends_on: Union[str, Sequence[str], None] = None
 def upgrade() -> None:
     op.create_table(
         "project",
-        sa.Column("id", sa.Integer, autoincrement=True, primary_key=True)
+        sa.Column("id", sa.Integer, autoincrement=True, primary_key=True),
+        sa.Column("name", sa.String(length=32), nullable=False),
+        sa.Column("description", sa.Text, nullable=True),
+        sa.Column("date_start", sa.DateTime, nullable=False),
+        sa.Column("date_end", sa.DateTime, nullable=False),
+        sa.Column("geo_json", sa.JSON, nullable=False),
     )
 
 
