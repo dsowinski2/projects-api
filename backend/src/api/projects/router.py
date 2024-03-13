@@ -16,7 +16,7 @@ projects_router = APIRouter()
 
 def controler_builder(session: Session = Depends(db_session)):
     repository = ProjectRepository(session=session)
-    controller = ProjectsController(repository=repository, data_model=ProjectType)
+    controller = ProjectsController(repository=repository)
     return controller
 
 

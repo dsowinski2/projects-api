@@ -4,7 +4,6 @@ from typing import List
 from typing import TypeVar
 
 from fastapi import HTTPException
-from pydantic import BaseModel
 
 from backend.src.repositories.base import BaseRepository
 from backend.src.repositories.excepions import ObjectNotFoundException
@@ -18,6 +17,7 @@ RepoType = TypeVar("RepoType", bound=BaseRepository)
 def handle_exception(e: Exception):
     if isinstance(e, ObjectNotFoundException):
         raise HTTPException(status_code=404, detail="Not found.")
+    print(e)
     raise HTTPException(status_code=500, detail="Internal server error.")
 
 
@@ -32,13 +32,12 @@ def exception_handler(func):
 
 
 class BaseController(ABC, Generic[ModelType, UpdateType, CreateType, RepoType]):
-    def __init__(self, repository: RepoType, data_model: BaseModel):
+    def __init__(self, repository: RepoType):
         self.repository = repository
-        self.data_model = data_model
 
     @exception_handler
     def list_objects(self) -> List[ModelType]:
-        return self.repository.list()
+        return self.repository.all()
 
     @exception_handler
     def get_object_by_id(self, id: str) -> ModelType:
@@ -55,4 +54,4 @@ class BaseController(ABC, Generic[ModelType, UpdateType, CreateType, RepoType]):
 
     @exception_handler
     def create_object(self, data: CreateType) -> ModelType:
-        return self.data_model.model_validate(self.repository.create(data))
+        return self.repository.create(data)

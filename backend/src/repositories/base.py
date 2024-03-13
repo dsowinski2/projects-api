@@ -17,13 +17,12 @@ class BaseRepository(ABC, Generic[ModelType, UpdateType, CreateType]):
         self.session = session
 
     def get_by_id(self, id: str) -> ModelType:
-        if obj := self.session.query(self.model).get(id):
+        if obj := self.session.query(self.model).filter_by(id=id).first():
             return obj
         raise ObjectNotFoundException()
 
-    def list(self) -> List[ModelType]:
-        query = self.session.query(self.model)
-        return query.all()
+    def all(self) -> List[ModelType]:
+        return self.session.query(self.model).all()
 
     def create(self, data: CreateType) -> ModelType:
         obj = self.model(**data.model_dump(exclude_unset=True))

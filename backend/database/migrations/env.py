@@ -12,7 +12,8 @@ base_dir = os.path.abspath(os.path.join(os.getcwd(), "../../.."))
 sys.path.append(parent_dir)
 sys.path.append(base_dir)
 
-from base import BaseModel, postgres_uri  # noqa: E402
+from base import Base, postgres_uri  # noqa: E402
+
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
@@ -29,7 +30,7 @@ config.set_main_option("sqlalchemy.url", postgres_uri)
 # for 'autogenerate' support
 # BaseModel
 
-target_metadata = BaseModel.metadata
+target_metadata = Base.metadata
 # target_metadata = None
 
 # other values from the config, defined by the needs of env.py,

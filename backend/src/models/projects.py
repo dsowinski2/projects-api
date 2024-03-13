@@ -5,11 +5,12 @@ from sqlalchemy import String
 from sqlalchemy import Text
 from sqlalchemy.dialects.postgresql import JSON
 
-from backend.database.base import BaseModel
+from backend.database.base import Base
 
 
-class Project(BaseModel):
+class Project(Base):
     __tablename__ = "project"
+
     id = Column("id", Integer, primary_key=True, autoincrement=True)
     name = Column("name", String(length=32), nullable=False)
     description = Column("description", Text, nullable=True)

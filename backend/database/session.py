@@ -1,3 +1,5 @@
+from contextlib import contextmanager
+
 from sqlalchemy import orm
 
 from .connection import db
@@ -20,3 +22,7 @@ def db_session() -> Session:
         raise e
     finally:
         session.close()
+
+
+db_context = contextmanager(db_session)
+session = next(db_session())
