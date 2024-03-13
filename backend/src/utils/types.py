@@ -1,8 +1,10 @@
 from datetime import datetime
+from typing import Annotated
 from typing import TypeVar
 
 from pydantic import BaseModel
 from pydantic import ConfigDict
+from pydantic import StringConstraints
 
 
 ModelType = TypeVar("ModelType")
@@ -15,7 +17,7 @@ class ProjectIdType(BaseModel):
 
 
 class ProjectCreateType(BaseModel):
-    name: str
+    name: Annotated[str, StringConstraints(max_length=32)]
     description: str | None = None
     date_start: datetime
     date_end: datetime
