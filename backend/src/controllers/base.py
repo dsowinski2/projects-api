@@ -1,3 +1,4 @@
+import logging
 from abc import ABC
 from typing import Generic
 from typing import List
@@ -13,11 +14,13 @@ from backend.src.utils.types import UpdateType
 
 RepoType = TypeVar("RepoType", bound=BaseRepository)
 
+logger = logging.getLogger(__name__)
+
 
 def handle_exception(e: Exception):
     if isinstance(e, ObjectNotFoundException):
         raise HTTPException(status_code=404, detail="Not found.")
-    print(e)
+    logger.error(e)
     raise HTTPException(status_code=500, detail="Internal server error.")
 
 

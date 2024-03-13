@@ -32,7 +32,7 @@ services:
 
     volumes:
       - ./backend:/backend
-    command: /bin/sh -c 'uvicorn main:app --reload --port=5001 --host=0.0.0.0'
+    command: /bin/sh -c 'uvicorn main:app --reload --port=5001 --host=0.0.0.0  --log-config=log_conf.yaml'
     ports:
       - "5001:5001"
 
