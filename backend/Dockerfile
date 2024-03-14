@@ -4,7 +4,7 @@ FROM python:3.12 AS builder
 RUN pip install -U pip setuptools wheel
 RUN pip install pdm
 
-COPY pyproject.toml pdm.lock README.md main.py pytest.ini log_conf.yaml /
+COPY pyproject.toml pdm.lock README.md main.py pytest.ini log_conf.yaml alembic.ini /
 COPY backend/ /backend
 
 RUN mkdir __pypackages__ && pdm sync --prod --no-editable
@@ -15,5 +15,5 @@ FROM builder
 ENV PYTHONPATH=/pkgs
 COPY --from=builder /__pypackages__/3.12/lib /pkgs
 COPY --from=builder /__pypackages__/3.12/bin/* /bin/
-COPY --from=builder /pyproject.toml /pdm.lock /README.md /main.py pytest.ini log_conf.yaml /
+COPY --from=builder /pyproject.toml /pdm.lock /README.md /main.py pytest.ini log_conf.yaml alembic.ini /
 COPY --from=builder /backend/ /backend

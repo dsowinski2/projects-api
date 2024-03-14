@@ -3,9 +3,10 @@ import sys
 from logging.config import fileConfig
 
 from alembic import context
-from base import postgres_uri
 from sqlalchemy import engine_from_config
 from sqlalchemy import pool
+
+from backend.database.base import postgres_uri
 
 
 parent_dir = os.path.abspath(os.path.join(os.getcwd(), ".."))
