@@ -5,7 +5,7 @@
 groups = ["default"]
 strategy = ["cross_platform", "inherit_metadata"]
 lock_version = "4.4.1"
-content_hash = "sha256:3633e3ca11fece89eca60a221ff5e568959dd8bd180a4462e5c9763cf4a2592f"
+content_hash = "sha256:878224413586a211629cf2239a2631017e5638efb92bb5cd96d66c6ec34ad119"
 
 [[package]]
 name = "alembic"
@@ -143,6 +143,20 @@ dependencies = [
 files = [
     {file = "fastapi-0.110.0-py3-none-any.whl", hash = "sha256:87a1f6fb632a218222c5984be540055346a8f5d8a68e8f6fb647b1dc9934de4b"},
     {file = "fastapi-0.110.0.tar.gz", hash = "sha256:266775f0dcc95af9d3ef39bad55cff525329a931d5fd51930aadd4f428bf7ff3"},
+]
+
+[[package]]
+name = "freezegun"
+version = "1.4.0"
+requires_python = ">=3.7"
+summary = "Let your Python tests travel through time"
+groups = ["default"]
+dependencies = [
+    "python-dateutil>=2.7",
+]
+files = [
+    {file = "freezegun-1.4.0-py3-none-any.whl", hash = "sha256:55e0fc3c84ebf0a96a5aa23ff8b53d70246479e9a68863f1fcac5a3e52f19dd6"},
+    {file = "freezegun-1.4.0.tar.gz", hash = "sha256:10939b0ba0ff5adaecf3b06a5c2f73071d9678e507c5eaedb23c761d56ac774b"},
 ]
 
 [[package]]
@@ -415,6 +429,20 @@ dependencies = [
 files = [
     {file = "pytest_factoryboy-2.7.0-py3-none-any.whl", hash = "sha256:bf3222db22d954fbf46f4bff902a0a8d82f3fc3594a47c04bbdc0546ff4c59a6"},
     {file = "pytest_factoryboy-2.7.0.tar.gz", hash = "sha256:67fc54ec8669a3feb8ac60094dd57cd71eb0b20b2c319d2957873674c776a77b"},
+]
+
+[[package]]
+name = "pytest-freezegun"
+version = "0.4.2"
+summary = "Wrap tests with fixtures in freeze_time"
+groups = ["default"]
+dependencies = [
+    "freezegun>0.3",
+    "pytest>=3.0.0",
+]
+files = [
+    {file = "pytest-freezegun-0.4.2.zip", hash = "sha256:19c82d5633751bf3ec92caa481fb5cffaac1787bd485f0df6436fd6242176949"},
+    {file = "pytest_freezegun-0.4.2-py2.py3-none-any.whl", hash = "sha256:5318a6bfb8ba4b709c8471c94d0033113877b3ee02da5bfcd917c1889cde99a7"},
 ]
 
 [[package]]

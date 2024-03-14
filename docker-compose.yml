@@ -22,7 +22,8 @@ services:
     ports:
       - "5431:5431"
     volumes:
-      - ./postgresql-test:/var/lib/postgresql/data
+      - test_pgdata:/var/lib/postgresql/data
+
   
   backend:
     env_file:
@@ -41,3 +42,4 @@ services:
 
 volumes:
   pgdata:
+  test_pgdata:

@@ -3,6 +3,7 @@ import sys
 from logging.config import fileConfig
 
 from alembic import context
+from base import postgres_uri
 from sqlalchemy import engine_from_config
 from sqlalchemy import pool
 
@@ -12,7 +13,7 @@ base_dir = os.path.abspath(os.path.join(os.getcwd(), "../../.."))
 sys.path.append(parent_dir)
 sys.path.append(base_dir)
 
-from base import Base, postgres_uri  # noqa: E402
+from backend.src.models import Base  # noqa: E402
 
 
 # this is the Alembic Config object, which provides

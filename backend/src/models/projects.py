@@ -5,10 +5,11 @@ from sqlalchemy import String
 from sqlalchemy import Text
 from sqlalchemy.dialects.postgresql import JSON
 
+from .mixin import TimestampMixin
 from backend.database.base import Base
 
 
-class Project(Base):
+class Project(Base, TimestampMixin):
     __tablename__ = "project"
 
     id = Column("id", Integer, primary_key=True, autoincrement=True)

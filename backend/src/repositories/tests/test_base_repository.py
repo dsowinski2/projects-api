@@ -1,5 +1,6 @@
 import json
 from datetime import datetime
+from datetime import timedelta
 
 import pytest
 
@@ -141,6 +142,17 @@ def test_update_can_set_optional_field_to_none(
 
     db_obj = db_session.query(Project).first()
     assert db_obj.description is None
+
+
+@pytest.mark.freeze_time
+def test_update_set_updated_at(projects_repo, project_factory, db_session):
+    project = project_factory(updated_at=datetime.now() - timedelta(hours=1))
+    update_data = ProjectUpdateType(**json.loads('{"description": null}'))
+
+    projects_repo.update(project.id, update_data)
+
+    db_obj = db_session.query(Project).first()
+    assert db_obj.updated_at == datetime.now()
 
 
 def test_delete_remove_object(projects_repo, db_session, project_factory):

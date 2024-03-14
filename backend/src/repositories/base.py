@@ -1,4 +1,5 @@
 from abc import ABC
+from datetime import datetime
 from typing import Generic
 from typing import List
 
@@ -34,6 +35,7 @@ class BaseRepository(ABC, Generic[ModelType, UpdateType, CreateType]):
         obj = self.get_object_for_update(id)
         for key, value in data.model_dump(exclude_unset=True).items():
             setattr(obj, key, value)
+        obj.updated_at = datetime.now()
         self.session.add(obj)
         return obj
 
